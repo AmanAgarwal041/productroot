@@ -106,7 +106,7 @@ function PullRequestComposer({ onProposed, onClose }: { onProposed: (r: Workflow
             Preview: {preview.files.length} new file{preview.files.length === 1 ? "" : "s"} on a new branch. Existing files are never overwritten.
           </h4>
           {preview.files.map((f) => (
-            <details key={f.path} className="file-preview">
+            <details key={f.path} className="file-preview" open={preview.files.length <= 2}>
               <summary className="mono">{f.path}</summary>
               <pre>{f.content}</pre>
             </details>

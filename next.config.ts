@@ -7,6 +7,8 @@ initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // No floating dev badge (keeps local screenshots clean).
+  devIndicators: false,
   outputFileTracingExcludes: {
     "*": ["node_modules/next/dist/compiled/@vercel/og/**"],
   },
