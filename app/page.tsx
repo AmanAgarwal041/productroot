@@ -75,7 +75,7 @@ const FAMILY = [
     name: "SocialBrewery",
     url: "https://socialbrewery.agarwal-aman041.workers.dev",
     img: "/landing/family-socialbrewery.jpg",
-    body: "Tell Grok what to make and it writes, generates and posts to YouTube Shorts, LinkedIn, Instagram, X, Hashnode, Slack and Reddit. ProductRoot uses it to publish your launch announcement, after you approve.",
+    body: "Tell Grok or Claude what to make and it writes, generates and posts to YouTube Shorts, LinkedIn, Instagram, X, Hashnode, Slack and Reddit. ProductRoot uses it to publish your launch announcement, after you approve.",
   },
 ];
 

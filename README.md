@@ -55,7 +55,7 @@ Also included:
 ## Part of a product family
 
 - **[MetaInfo](https://metainfo.agarwal-aman041.workers.dev):** see any page the way Google, Bing, ChatGPT, Perplexity, Claude and Gemini do.
-- **[SocialBrewery](https://socialbrewery.agarwal-aman041.workers.dev):** an AI posting studio for YouTube Shorts, LinkedIn, Instagram, X, Hashnode, Slack and Reddit.
+- **[SocialBrewery](https://socialbrewery.agarwal-aman041.workers.dev):** an AI posting studio (Grok or Claude) for YouTube Shorts, LinkedIn, Instagram, X, Hashnode, Slack and Reddit.
 - **ProductRoot** reuses both through their real APIs, and one sign-in works across all three.
 
 ---
