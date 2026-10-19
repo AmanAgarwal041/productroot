@@ -1,0 +1,48 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "productroot",
+  "main": "worker.ts",
+  "compatibility_date": "2025-10-01",
+  // nodejs_compat: Next.js server APIs. global_fetch_strictly_public: assessments
+  // fetch user-supplied URLs, so the Worker may only reach the public internet
+  // (the SSRF guard on Workers; lib/server/safe-fetch.ts covers `next dev`).
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "productroot"
+    }
+  ],
+  // Projects, assessments, decisions and the audit log.
+  // Create once with `npx wrangler d1 create productroot` and paste the id here,
+  // then apply migrations with `npm run db:migrate:remote`.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "productroot",
+      "database_id": "053f3864-a21f-4088-ba33-8e334bb709a2",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    // Public address of the app (workers.dev or your custom domain). Clerk's
+    // authorised parties and the cron trigger use it.
+    "APP_URL": "https://productroot.agarwal-aman041.workers.dev",
+    // MetaInfo deployment used for discoverability checks.
+    "METAINFO_URL": "https://metainfo.agarwal-aman041.workers.dev"
+  },
+  // Scheduled re-checks (worker.ts → /api/cron/recheck), every 2 hours, a few projects per run.
+  "triggers": { "crons": ["0 */2 * * *"] },
+  "observability": { "enabled": true }
+  // Secrets (npx wrangler secret put <NAME>), never in this file:
+  //   CLERK_SECRET_KEY         required, from the Clerk dashboard (same application as MetaInfo/SocialBrewery for SSO)
+  //   PRODUCTROOT_MASTER_KEY   required, encrypts connections: openssl rand -base64 32
+  //   CRON_SECRET              required for scheduled re-checks: openssl rand -hex 32
+  //   GITHUB_TOKEN, METAINFO_TOKEN  optional
+  // Build-time (inlined into the browser bundle, public): NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+  // in .env.production or the shell when running `npm run deploy`.
+}
